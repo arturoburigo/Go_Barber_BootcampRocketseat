@@ -2,10 +2,13 @@ import express, { Request, Response, NextFunction } from 'express'
 import routes from './routes'
 import './database'
 import 'reflect-metadata'
+import cors from 'cors'
 import UploadConfig from './config/upload'
 import AppError from './error/AppError'
 
 const app = express()
+
+app.use(cors())
 app.use(express.json())
 app.use('/files', express.static(UploadConfig.directory))
 app.use(routes)
