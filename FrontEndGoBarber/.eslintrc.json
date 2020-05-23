@@ -25,7 +25,10 @@
   },
   "plugins": ["react", "react-hooks", "@typescript-eslint", "prettier"],
   "rules": {
-    "no-param-reassign": "off",
+
+    "react/jsx-one-expression-per-line": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "react-native/no-inline-styles": "off" ,
     "prettier/prettier": "error",
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
