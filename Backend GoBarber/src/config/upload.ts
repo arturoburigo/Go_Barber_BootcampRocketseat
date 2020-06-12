@@ -5,7 +5,9 @@ import crypyo from 'crypto'
 const tmpFolder = path.resolve(__dirname, '..', '..', 'tmp')
 
 export default {
-  directory: tmpFolder,
+  tmpFolder,
+  uploadsFolder: path.resolve(tmpFolder, 'uploads'),
+
   storage: multer.diskStorage({
     destination: tmpFolder,
     filename(request, file, callback) {
