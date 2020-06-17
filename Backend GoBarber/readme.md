@@ -8,21 +8,21 @@
 
 
 <ul>
-  <li> <h2> Create a user </h2> </li>
-  <li> <h2> Authenticate the user with JWT </h2> </li>
-  <li> <h2> Update your profile photo </h2> </li>
-  <li> <h2> Development of password reset almost finished </h2> </li>
-  <li> <h2> Make an appointment </h2> </li>
+  <li> <h3> Create a user </h3> </li>
+  <li> <h3> Authenticate the user with JWT </h3> </li>
+  <li> <h3> Update your profile photo </h3> </li>
+  <li> <h3> Development of password reset almost finished </h3> </li>
+  <li> <h3> Make an appointment </h3> </li>
 </ul>
 
 
 🇧🇷 a API do GoBarber feito no [Bootcamp GoStack](https://rocketseat.com.br/gostack),está sendo desenvolvida em NodeJS, usando banco de dados [PostgreSQL](https://www.postgresql.org/), usando Jest para a realização de testes automatizados, a aplicaçao foi feita para um serviço de barbearia, aonde o barbeiro pode cadastrar os dados da sua loja, horarios disponiveis etc... e o cliente por sua vez, poderá marcar agendamentos o barbeiro de sua preferencia, por enquanto a aplicação permite:
 
 <ul>
-  <li><h2>Criar um usuario</h2></li>
-  <li><h2>Autenticar o usuario com JWT</h2></li>
-  <li><h2>Atualizar a foto de perfil</h2></li>
-  <li><h2>Desenvolvimento quase finalizado do reset de senha</h2></li>
-  <li><h2>Marcar um agendamento</h2></li>
+  <li><h3>Criar um usuario</h3></li>
+  <li><h3>Autenticar o usuario com JWT</h3></li>
+  <li><h3>Atualizar a foto de perfil</h3></li>
+  <li><h3>Desenvolvimento quase finalizado do reset de senha</h3></li>
+  <li><h3>Marcar um agendamento</h3></li>
 </ul>
 
