@@ -11,8 +11,11 @@
   <li> <h4> Create a user </h4> </li>
   <li> <h4> Authenticate the user with JWT </h4> </li>
   <li> <h4> Update your profile photo </h4> </li>
-  <li> <h4> Development of password reset almost finished </h4> </li>
+  <li> <h4> Password reset</h4> </li>
   <li> <h4> Make an appointment </h4> </li>
+  <li> <h4> Update of name, email and password </h4> </li>
+  <li> <h4> Sending an email to request a new password </h4> </li>
+
 </ul>
 
 
@@ -22,7 +25,9 @@
   <li><h4>Criar um usuario</h4></li>
   <li><h4>Autenticar o usuario com JWT</h4></li>
   <li><h4>Atualizar a foto de perfil</h4></li>
-  <li><h4>Desenvolvimento quase finalizado do reset de senha</h4></li>
+  <li><h4>Reset de senha</h4></li>
   <li><h4>Marcar um agendamento</h4></li>
+  <li><h4>Atualização do nome, email e senha</h4></li>
+  <li><h4>Envio de email para requisição de nova senha</h4></li>
 </ul>
 

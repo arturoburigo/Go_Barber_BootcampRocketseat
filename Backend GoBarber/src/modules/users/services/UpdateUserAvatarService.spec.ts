@@ -4,16 +4,21 @@ import FakeStorageProvider from '@shared/container/providers/StorageProvider/fak
 import FakeUserRepository from '../repositories/fakes/FakeUsersRepository'
 import UpdateAvatarUserServices from './UpdateAvatarUserServices'
 
-describe('UpdateAvatar', () => {
-  it('should be able to update avatar image', async () => {
-    const fakeUsersRepository = new FakeUserRepository()
-    const fakeStorageProvider = new FakeStorageProvider()
+let fakeUsersRepository: FakeUserRepository
+let fakeStorageProvider: FakeStorageProvider
+let updateUserAvatar: UpdateAvatarUserServices
 
-    const updateUserAvatar = new UpdateAvatarUserServices(
+describe('UpdateAvatar', () => {
+  beforeEach(() => {
+    fakeUsersRepository = new FakeUserRepository()
+    fakeStorageProvider = new FakeStorageProvider()
+
+    updateUserAvatar = new UpdateAvatarUserServices(
       fakeUsersRepository,
       fakeStorageProvider
     )
-
+  })
+  it('should be able to update avatar image', async () => {
     const user = await fakeUsersRepository.create({
       name: 'John Doe',
       email: 'johndoe@gmail.com',
@@ -29,14 +34,6 @@ describe('UpdateAvatar', () => {
   })
 
   it('should not be able to update avatar image with anonnymouss user ', async () => {
-    const fakeUsersRepository = new FakeUserRepository()
-    const fakeStorageProvider = new FakeStorageProvider()
-
-    const updateUserAvatar = new UpdateAvatarUserServices(
-      fakeUsersRepository,
-      fakeStorageProvider
-    )
-
     await expect(
       updateUserAvatar.execute({
         user_id: 'nothing',
@@ -46,16 +43,7 @@ describe('UpdateAvatar', () => {
   })
 
   it('should be able to update avatarold to new own', async () => {
-    const fakeUsersRepository = new FakeUserRepository()
-    const fakeStorageProvider = new FakeStorageProvider()
-
     const deleteFile = jest.spyOn(fakeStorageProvider, 'deleteFile')
-
-    const updateUserAvatar = new UpdateAvatarUserServices(
-      fakeUsersRepository,
-      fakeStorageProvider
-    )
-
     const user = await fakeUsersRepository.create({
       name: 'John Doe',
       email: 'johndoe@gmail.com',

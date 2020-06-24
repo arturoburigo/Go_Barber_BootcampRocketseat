@@ -1,11 +1,11 @@
-/* eslint-disable import/prefer-default-export */
 import { MigrationInterface, QueryRunner, Table } from 'typeorm'
 
-export class CreateAppointmenets1587839723075 implements MigrationInterface {
+export default class CreateUserTokens1592428152558
+  implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(
       new Table({
-        name: 'appointments',
+        name: 'user_tokens',
         columns: [
           {
             name: 'id',
@@ -15,22 +15,34 @@ export class CreateAppointmenets1587839723075 implements MigrationInterface {
             default: 'uuid_generate_v4()',
           },
           {
-            name: 'provider',
-            type: 'varchar',
+            name: 'token',
+            type: 'uuid',
+            generationStrategy: 'uuid',
+            default: 'uuid_generate_v4()',
           },
           {
-            name: 'date',
-            type: 'timestamp with time zone',
+            name: 'user_id',
+            type: 'uuid',
           },
           {
-            name: 'create_at',
+            name: 'created_at',
             type: 'timestamp',
             default: 'now()',
           },
           {
-            name: 'update_at',
+            name: 'updated_at',
             type: 'timestamp',
             default: 'now()',
+          },
+        ],
+        foreignKeys: [
+          {
+            name: 'TokenUser',
+            referencedTableName: 'users',
+            referencedColumnNames: ['id'],
+            columnNames: ['user_id'],
+            onDelete: 'CASCADE',
+            onUpdate: 'CASCADE',
           },
         ],
       })
@@ -38,6 +50,6 @@ export class CreateAppointmenets1587839723075 implements MigrationInterface {
   }
 
   public async down(queryRunner: QueryRunner): Promise<void> {
-    await queryRunner.dropTable('appointments')
+    await queryRunner.dropTable('user_tokens')
   }
 }

@@ -11,7 +11,7 @@ const app = express()
 
 app.use(cors())
 app.use(express.json())
-app.use('/files', express.static(UploadConfig.directory))
+app.use('/files', express.static(UploadConfig.uploadsFolder))
 app.use(routes)
 
 app.use((err: Error, request: Request, response: Response, _: NextFunction) => {
@@ -21,6 +21,7 @@ app.use((err: Error, request: Request, response: Response, _: NextFunction) => {
       message: err.message,
     })
   }
+  console.error(err)
   return response.status(500).json({
     status: 'error',
     message: 'Internal Server Error',
