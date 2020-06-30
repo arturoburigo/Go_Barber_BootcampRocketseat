@@ -7,12 +7,6 @@ const appointmentsController = new AppointmentsController()
 
 appointmenstRoutes.use(ensureAuthentication)
 
-/* appointmenstRoutes.get('/', async (request, response) => {
-  const appointments = await appointmentRepository.find()
-
-  return response.json(appointments)
-}) */
-
 appointmenstRoutes.post('/', appointmentsController.create)
 
 export default appointmenstRoutes
