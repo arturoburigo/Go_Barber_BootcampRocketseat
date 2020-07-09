@@ -2,6 +2,7 @@ import { startOfHour, isBefore, getHours, format } from 'date-fns'
 import AppError from '@shared/errors/AppError'
 import INotificationsRepository from '@modules/notifications/repositories/INotificationsRepository'
 import { inject, injectable } from 'tsyringe'
+import ICashProvider from '@shared/container/providers/CacheProvider/models/ICacheProvider'
 import Appointment from '../infra/typeorm/entities/Appointment'
 import 'express-async-errors'
 import IAppointmentsRepository from '../repositories/IAppointmentsRepository'
@@ -19,7 +20,10 @@ class CreateAppointmentServices {
     private appointmentsRepository: IAppointmentsRepository,
 
     @inject('NotificationsRepository')
-    private notificationsRepository: INotificationsRepository
+    private notificationsRepository: INotificationsRepository,
+
+    @inject('CacheProvider')
+    private cacheProvider: ICashProvider
   ) {}
 
   public async execute({
@@ -64,6 +68,20 @@ class CreateAppointmentServices {
       recipient_id: provider_id,
       content: `new schedule for the day ${dateFormatted} `,
     })
+
+    console.log(
+      `provider-appointments:${provider_id}:${format(
+        appointmentDate,
+        'yyyy-M-d'
+      )}`
+    )
+
+    await this.cacheProvider.invalidate(
+      `provider-appointments:${provider_id}:${format(
+        appointmentDate,
+        'yyyy-M-d'
+      )}`
+    )
 
     return appointment
   }

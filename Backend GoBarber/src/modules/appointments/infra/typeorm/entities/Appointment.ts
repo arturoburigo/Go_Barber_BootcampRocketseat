@@ -10,6 +10,8 @@ import {
 
 import User from '@modules/users/infra/typeorm/entities/user'
 
+import { Exclude } from 'class-transformer'
+
 @Entity('appointments')
 class Appointment {
   @PrimaryGeneratedColumn('uuid')
@@ -27,6 +29,7 @@ class Appointment {
 
   @ManyToOne(() => User)
   @JoinColumn({ name: 'user_id' })
+  @Exclude()
   user: User
 
   @Column('timestamp with time zone')

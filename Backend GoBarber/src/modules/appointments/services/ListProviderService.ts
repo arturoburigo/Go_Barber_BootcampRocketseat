@@ -1,7 +1,9 @@
+/* eslint-disable prefer-const */
 import { injectable, inject } from 'tsyringe'
 
 import User from '@modules/users/infra/typeorm/entities/user'
 import IUsersRepository from '@modules/users/repositories/IUsersRepository'
+import ICashProvider from '@shared/container/providers/CacheProvider/models/ICacheProvider'
 
 interface IRequest {
   user_id: string
@@ -11,14 +13,23 @@ interface IRequest {
 class ListProvidersService {
   constructor(
     @inject('UsersRepository')
-    private usersRepository: IUsersRepository
+    private usersRepository: IUsersRepository,
+    @inject('CacheProvider')
+    private cacheProvider: ICashProvider
   ) {}
 
   public async execute({ user_id }: IRequest): Promise<User[]> {
-    const users = await this.usersRepository.findAllProviders({
-      except_user_id: user_id,
-    })
+    let users = await this.cacheProvider.recover<User[]>(
+      `providers-list:${user_id}`
+    )
 
+    if (!users) {
+      users = await this.usersRepository.findAllProviders({
+        except_user_id: user_id,
+      })
+
+      await this.cacheProvider.save(`providers-list:${user_id}`, users)
+    }
     return users
   }
 }
