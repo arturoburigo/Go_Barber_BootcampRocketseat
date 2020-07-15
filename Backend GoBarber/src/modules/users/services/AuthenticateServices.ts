@@ -33,8 +33,7 @@ class AuthenticateServices {
     if (!user) {
       throw new AppError('incorret Email/Password combination', 401)
     }
-    // user.password=senha cripografada
-    // password= senha nao criptrofada
+ 
     const passwordMatched = await this.hashProvider.compareHash(
       password,
       user.password
@@ -43,7 +42,7 @@ class AuthenticateServices {
     if (!passwordMatched) {
       throw new AppError('incorret Email/Password combination', 401)
     }
-    // usuarui autenticado
+    
 
     const { key, expiresIn } = authKey.jwt
 
